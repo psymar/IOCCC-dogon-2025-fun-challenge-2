@@ -8,9 +8,11 @@ This is an alteration of https://github.com/ioccc-src/winner/blob/master/2025/do
 I kept the same code layout, and the same restriction of the original of only using the variable 'e' and no constants or literals.
 
 ### Issues:
-Some compilers, particularly Apple Clang 21.0.0 on macOS 26.5.1, apparently butcher this with even -O1 optimizations enabled.  Fortunately it seems to run fast enough at -O0.
+The original program has some undefined behavior relating to comparing an uninitialized variable to itself.  This is patched in this repository.
 
-Additionally, there is still the bug that on some systems it may not display correctly unless you pipe the output through a utility such as head or cat.
+There may still be the bug that on some systems it may not display correctly unless you pipe the output through a utility such as head or cat.
+
+Additionally, there is apparently a bug on my system where if piping the output to a file, there are a number of ascii DLE (Data Link Escape) characters followed by backspaces, which are not visible when outputting to terminal.
 
 ## Explanation of changes:
 

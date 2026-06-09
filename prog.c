@@ -8,10 +8,10 @@
 #define F char
 
 
-                                                                                                                                     main()                                                                   
-            {                                                                                                                    int*e;for(                      e                                            
-           =(                                                                                                                   int*)calloc                      (-                                           
-          ~(                                                                                                                    e==e)<<-~(!                       (e                                          
+																     int*e;								      
+	    ;															 main(){for			 (					      
+	   e=															calloc(-~-~			 -~					      
+	  ~(															e!=e)<<-~(!			  (e					      
           >e                                                                                                                    )<<-   ~-~-                        ~!                                         
          (e                                                                                                                            <e))                        ,-                                         
         ~!                                                                                                                             (e>e                         ))                                        

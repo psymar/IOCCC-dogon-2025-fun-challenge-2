@@ -22,8 +22,8 @@
 #
 # For more information, see: https://creativecommons.org/licenses/by-sa/4.0/
 # 
-# Some small changes have been made for the Fun Challenge 2 code to sit in this
-# repository alongside the original.
+# Some small changes have been made for the Fun Challenge 2 code and UBfix patch
+# to sit in this repository alongside the original.
 # 
 # These changes are Copyright (c) 2026 by Samantha Howard and are shared under
 # the same CC-by-SA 4.0 license linked above.
@@ -82,7 +82,7 @@ COTHER=
 
 # Optimization
 #
-OPT= -O0
+OPT= -O3
 
 # Default flags for ANSI C compilation
 #
@@ -106,6 +106,10 @@ TARGET= ${PROG}
 #
 ORIG_OBJ= ${PROG}.orig.o
 ORIG_TARGET= ${PROG}.orig
+#
+UBFIX_OBJ= ${PROG}.ubfix.o
+UBFIX_TARGET= ${PROG}.ubfix
+
 
 # list any data files supplied with your submission
 #
@@ -115,13 +119,13 @@ DATA=
 
 # shell scripts
 #
-SH_TOOLS= try.sh 
+SH_TOOLS= try.sh try.orig.sh try.ubfix.sh
 
 #################
 # build the entry
 #################
 
-all: data ${SH_TOOLS} ${TARGET} 
+all: data ${SH_TOOLS} ${TARGET}
 	@${TRUE}
 
 .PHONY: all data everything clean clobber
@@ -139,6 +143,15 @@ orig: data ${ORIG_TARGET}
 ${PROG}.orig: ${PROG}.orig.c
 	${CC} ${CFLAGS} ${PROG}.orig.c -o $@ ${LDFLAGS}
 
+
+# UB-fixed original version executable
+#
+ubfix: data ${UBFIX_TARGET}
+	@${TRUE}
+
+${PROG}.ubfix: ${PROG}.ubfix.c
+	${CC} ${CFLAGS} ${PROG}.ubfix.c -o $@ ${LDFLAGS}
+
 # data files
 #
 data: ${DATA}
@@ -146,7 +159,7 @@ data: ${DATA}
 
 # both all and orig
 #
-everything: all orig
+everything: all orig ubfix
 	@${TRUE}
 
 ###############
@@ -154,9 +167,9 @@ everything: all orig
 ###############
 #
 clean:
-	${RM} -f ${OBJ} ${ORIG_OBJ}
+	${RM} -f ${OBJ} ${ORIG_OBJ} ${UBFIX_OBJ}
 
 clobber: clean
-	${RM} -f ${TARGET} ${ORIG_TARGET}
+	${RM} -f ${TARGET} ${ORIG_TARGET} ${UBFIX_TARGET}
 	${RM} -rf *.dSYM
 	${RM} -f bar foo out
