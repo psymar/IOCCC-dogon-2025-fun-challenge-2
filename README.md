@@ -47,3 +47,9 @@ Without the constraint I added of keeping the original shape of the source code,
 ``` <!---sh-->
     ./prog.orig | cat
 ```
+
+## Try original version, but with UB patch:
+
+``` <!---sh-->
+    ./prog.ubfix | cat
+```
